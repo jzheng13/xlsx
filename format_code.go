@@ -505,7 +505,8 @@ func parseLiterals(format string) (string, string, bool, error) {
 				}
 			}
 			// Symbols that don't have meaning and aren't in the exempt literal characters and are not escaped.
-			return "", "", false, errors.New("invalid formatting code: unsupported or unescaped characters")
+			errMsg := fmt.Sprintf("invalid formatting code: unsupported or unescaped characters in %v", curReducedFormat)
+			return "", "", false, errors.New(errMsg)
 		}
 	}
 	return prefix, "", showPercent, nil
